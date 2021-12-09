@@ -3,7 +3,7 @@
  * @Author: chenArno
  * @Date: 2021-12-08 12:50:29
  * @LastEditors: chenArno
- * @LastEditTime: 2021-12-08 18:01:26
+ * @LastEditTime: 2021-12-09 09:40:15
  */
 import React, { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
@@ -26,7 +26,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
 	}, [])
 
 	const onClick = (e: any) => {
-		navigate(e.key + e.key === 'sub1' ? '/2' : '');
+		navigate(e.key);
 	}
 
 	return <Layout>

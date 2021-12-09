@@ -4,9 +4,17 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// 根域名指向默认文件，使前端路由能够以【不直接访问 html 文件的形式】打开网页
-app.use('/', express.static(__dirname + homepage, { index: 'index.html' }));
+const port = 3110;
 
+const filePath = ".." + homepage;
+
+// 根域名指向默认文件，使前端路由能够以【不直接访问 html 文件的形式】打开网页
+app.use('/', express.static(path.join(__dirname, filePath), { index: 'index.html' }));
+app.use(homepage, express.static(path.join(__dirname, filePath)));
+
+app.use(homepage, function (req, res) {
+	res.sendFile(path.resolve(__dirname, filePath, './index.html'));
+})
 // ajax 请求均以 api 打头
 app.use('/api', (req, res) => {
 	res.send({
@@ -18,9 +26,9 @@ app.use('/api', (req, res) => {
 
 // 前端路由（非静态资源）指向 html 文件，处理刷新白屏
 app.use(/^\/(?!js|css|media).+/, (req, res) => {
-	res.sendFile(path.join(__dirname, homepage + '/index.html'));
+	res.sendFile(path.join(__dirname, filePath + '/index.html'));
 });
 
-app.listen(3110, () => {
-	console.log('start server on 3110...')
+app.listen(port, () => {
+	console.log('start server http://localhost:' + port)
 });

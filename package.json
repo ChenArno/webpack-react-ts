@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "基于webpack和react ts模板",
-  "homepage": "/tda",
+  "homepage": "/dist",
   "proxy": {
     "/api": {
       "target": "http://localhost:3000",
@@ -16,6 +16,7 @@
     "start": "node scripts/start.js",
     "build": "cross-env GENERATE_SOURCEMAP=false node scripts/build.js",
     "test": "node scripts/test.js",
+    "server": "node scripts/server.js",
     "upload": "cross-env NODE_ENV=production node ./deploy/index.js",
     "upload:dev": "cross-env NODE_ENV=development node ./deploy/index.js",
     "pack": "yarn run build && yarn run upload",
